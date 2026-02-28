@@ -1,0 +1,70 @@
+# Voir https://github.com/github/gitignore/blob/main/Node.gitignore
+# et https://github.com/github/gitignore/blob/main/Next.gitignore
+
+# Dépendances
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Tests / coverage
+/coverage
+
+# Next.js
+/.next/
+/out/
+.next/cache/               # parfois séparé, mais souvent inclus dans .next
+
+# Build & production
+/build
+/dist
+
+# Environnements (très important !)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Vercel
+.vercel
+.vercel/project.json       # parfois généré localement
+
+# Logs & temporaires
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+
+# Système & éditeurs
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# TypeScript & builds
+*.tsbuildinfo
+next-env.d.ts
+
+# Fichiers sensibles ou temporaires que certains ajoutent
+*.pem                      # certificats
+*.key
+*.cert
+*.secret*
+
+# Playwright (si tu l'utilises pour l'agent Validator)
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+
+# Optionnel : si tu utilises Supabase localement ou d'autres outils
+supabase/
