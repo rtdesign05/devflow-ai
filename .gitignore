@@ -68,3 +68,4 @@ playwright/.cache/
 
 # Optionnel : si tu utilises Supabase localement ou d'autres outils
 supabase/
+/app/generated/prisma

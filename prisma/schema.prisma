@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  password    String
+  createdAt   DateTime      @default(now())
+  generations Generation[]
+}
+
+model Generation {
+  id        Int      @id @default(autoincrement())
+  figmaUrl  String
+  htmlCode  String
+  reactCode String?
+  status    String   @default("success")
+  createdAt DateTime @default(now())
+  userId    Int?
+  user      User?    @relation(fields: [userId], references: [id])
+}

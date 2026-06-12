@@ -16,13 +16,13 @@ Il s'adresse à toute l'équipe (moi inclus) pour éviter les erreurs passées (
 
 ## Fréquence et rythme de travail recommandés
 
-| Action                              | Fréquence recommandée          | Objectif |
-|-------------------------------------|--------------------------------|----------|
-| Créer une nouvelle branche          | 1 à 3 fois par semaine         | Isoler chaque tâche |
-| Pousser sur sa branche (`git push`) | 1 à 4 fois par jour            | Sauvegarde quotidienne + visibilité équipe |
-| Créer une Pull Request              | À chaque fois qu'une tâche est terminée (idéalement 2–4 par semaine) | Review + intégration |
-| Merger une PR dans `main`           | 2 à 5 fois par semaine         | Avancer le projet stable |
-| Mettre à jour son local (`git pull`) | Tous les matins ou avant de commencer | Rester synchronisé |
+| Action                                  | Fréquence recommandée                                              | Objectif                         |
+|--------------------------------------  |--------------------------------------------------------------------|----------------------------------|
+| Créer une nouvelle branche              | 1 à 3 fois par semaine                                             | Isoler chaque tâche              |
+| Pousser sur sa branche (`git push`)     | 1 à 4 fois par jour                                                | Sauvegarde quotidienne + visibilité équipe |
+| Créer une Pull Request                  | À chaque fois qu'une tâche est terminée (idéalement 2–4 par semaine) | Review + intégration             |
+| Merger une PR dans `main`               | 2 à 5 fois par semaine                                             | Avancer le projet stable         |
+| Mettre à jour son local (`git pull`)    | Tous les matins ou avant de commencer                              | Rester synchronisé               |
 
 → **Objectif global :** 3 à 8 push par semaine par personne (sur des branches), 2–4 PR mergées par semaine.
 
