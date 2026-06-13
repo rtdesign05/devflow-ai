@@ -1,8 +1,12 @@
 import Link from 'next/link'
+import LogoutBanner from '@/components/LogoutBanner'
 
-export default function LandingPage() {
+export default async function LandingPage({ searchParams }: { searchParams: Promise<{ logout?: string }> }) {
+  const params = await searchParams
+  const showLogoutBanner = params?.logout === 'success'
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0f', color: '#e8e6f0', fontFamily: 'Inter, system-ui, sans-serif' }}>
+      {showLogoutBanner && <LogoutBanner />}
 
       {/* Hero */}
       <section style={{ maxWidth: '780px', margin: '0 auto', padding: '80px 24px 60px', textAlign: 'center' }}>

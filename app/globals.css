@@ -43,3 +43,26 @@ body {
     display: flex !important;
   }
 }
+
+/* Responsive general */
+pre {
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .generate-row {
+    flex-direction: column !important;
+  }
+
+  .generate-btn {
+    width: 100% !important;
+  }
+}

@@ -16,15 +16,19 @@ export default function NavbarClient({ userEmail }: Props) {
   async function handleLogout() {
     await fetch('/api/auth/logout', { method: 'POST' })
     setMenuOpen(false)
-    router.push('/')
+    router.push('/?logout=success')
     router.refresh()
   }
 
-  const navLinks = [
-    { href: '/', label: 'Accueil' },
-    { href: '/about', label: 'À propos' },
-    { href: '/contact', label: 'Contact' },
-  ]
+  const navLinks = isLoggedIn
+    ? [
+        { href: '/dashboard', label: 'Accueil' },
+        { href: '/about', label: 'À propos' },
+        { href: '/contact', label: 'Contact' },
+      ]
+    : [
+        { href: '/', label: 'Accueil' },
+      ]
 
   const linkStyle: React.CSSProperties = { color: '#9d9ab0', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }
   const mobileLinkStyle: React.CSSProperties = { ...linkStyle, display: 'block', padding: '10px 0', borderBottom: '1px solid #1e1c2e' }

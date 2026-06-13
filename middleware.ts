@@ -16,16 +16,23 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const token = request.cookies.get('session')?.value
 
-  const isDashboard = pathname.startsWith('/dashboard')
-  const isAuthPage = pathname === '/login' || pathname === '/register'
+  const isProtected =
+    pathname.startsWith('/dashboard') ||
+    pathname === '/about' ||
+    pathname === '/contact'
+
+  const isPublicOnly =
+    pathname === '/login' ||
+    pathname === '/register' ||
+    pathname === '/'
 
   const valid = token ? await isValidToken(token) : false
 
-  if (isDashboard && !valid) {
+  if (isProtected && !valid) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  if (isAuthPage && valid) {
+  if (isPublicOnly && valid) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
@@ -33,5 +40,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/login', '/register'],
+  matcher: ['/dashboard/:path*', '/login', '/register', '/', '/about', '/contact'],
 }
