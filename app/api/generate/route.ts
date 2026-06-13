@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { getSessionFromRequest } from '@/lib/session'
 
 export async function POST(req: NextRequest) {
+  const session = getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Non authentifié' }, { status: 401 })
+  }
+  const userId = session.userId
+
   try {
     const { figmaUrl } = await req.json()
 
@@ -22,15 +29,10 @@ export async function POST(req: NextRequest) {
 
     if (!n8nRes.ok) throw new Error(`n8n: ${n8nRes.status}`)
 
-    const n8nData = await n8nRes.json()
+    const htmlCode = await n8nRes.text()
 
     const generation = await prisma.generation.create({
-      data: {
-        figmaUrl,
-        htmlCode: n8nData.html ?? JSON.stringify(n8nData),
-        reactCode: n8nData.react ?? null,
-        status: 'success',
-      },
+      data: { figmaUrl, htmlCode, reactCode: null, status: 'success', userId },
     })
 
     return NextResponse.json({
@@ -41,6 +43,15 @@ export async function POST(req: NextRequest) {
     })
   } catch (error) {
     console.error('[/api/generate]', error)
+    await prisma.generation.create({
+      data: {
+        figmaUrl: 'unknown',
+        htmlCode: '',
+        errorMessage: error instanceof Error ? error.message : 'Erreur inconnue',
+        status: 'error',
+        userId,
+      },
+    }).catch(() => {})
     return NextResponse.json({ error: 'Erreur lors de la génération' }, { status: 500 })
   }
 }

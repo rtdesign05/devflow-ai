@@ -19,7 +19,8 @@ model Generation {
   id        Int      @id @default(autoincrement())
   figmaUrl  String
   htmlCode  String
-  reactCode String?
+  reactCode    String?
+  errorMessage String?
   status    String   @default("success")
   createdAt DateTime @default(now())
   userId    Int?
